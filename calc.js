@@ -24,6 +24,8 @@ let displayNum2 = document.querySelector("#display-num-2");
 let operator = "";
 let displayOperator = document.querySelector("#display-operator");
 
+let newResult = false;
+
 function operate(leftNum, rightNum, operatorChar){
     if(typeof leftNum != 'number' || typeof rightNum != 'number'){
         console.log("invalid numbers");
@@ -54,6 +56,16 @@ function operate(leftNum, rightNum, operatorChar){
 
 function updateNumber(event){
     displayError.textContent = "";
+    if(newResult){
+        num1 = parseInt(event.target.value);
+        num2 = 0;
+        operator = "";
+
+        displayNum1.textContent = num1;
+
+        newResult = false;
+        return;
+    }
 
     if(operator == ""){
         let remainder = num1 - Math.trunc(num1);
@@ -111,6 +123,8 @@ function equate(){
     displayNum1.textContent = num1;
     displayNum2.textContent = "";
     displayOperator.textContent = operator;
+
+    newResult = true;
 }
 
 function zeroDivision(){

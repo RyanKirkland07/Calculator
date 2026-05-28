@@ -56,7 +56,10 @@ function updateNumber(event){
     displayError.textContent = "";
 
     if(operator == ""){
+        let remainder = num1 - Math.trunc(num1);
+        num1 = Math.trunc(num1);
         num1 = num1 * 10;
+        num1 += remainder;
         num1 += parseInt(event.target.value);
 
         displayNum1.textContent = num1;
@@ -76,20 +79,12 @@ function updateOperator(event){
         displayOperator.textContent = operator;
     }
     else{
-        if(zeroDivision()){
-            num1 = 0;
-            num2 = 0;
-            operator = "";
-
-            displayError.textContent = "Can't divide by 0";
-
-            displayNum1.textContent = "";
-            displayNum2.textContent = "";
-            displayOperator.textContent = "";
+        if(num2 == 0 && operator == "/"){
+            zeroDivision();
             return;
         }
 
-        num1 = operate(num1, num2, operator);
+        num1 = +operate(num1, num2, operator).toFixed(2);
         num2 = 0;
 
         operator = event.target.value;
@@ -104,21 +99,12 @@ function equate(){
     if(operator == ""){
         return;
     }
-    if(zeroDivision()){
-        num1 = 0;
-        num2 = 0;
-        operator = "";
-
-        displayError.textContent = "Can't divide by 0";
-
-        displayNum1.textContent = "";
-        displayNum2.textContent = "";
-        displayOperator.textContent = "";
-
+    if(num2 == 0 && operator == "/"){
+        zeroDivision();
         return;
     }
 
-    num1 = operate(num1, num2, operator);
+    num1 = +operate(num1, num2, operator).toFixed(2);
     num2 = 0;
     operator = "";
 
@@ -128,5 +114,13 @@ function equate(){
 }
 
 function zeroDivision(){
-    return num2 == 0 && operator == "/";
+    num1 = 0;
+    num2 = 0;
+    operator = "";
+
+    displayError.textContent = "Can't divide by 0";
+
+    displayNum1.textContent = "";
+    displayNum2.textContent = "";
+    displayOperator.textContent = "";
 }

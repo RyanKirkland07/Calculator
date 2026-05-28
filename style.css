@@ -35,3 +35,7 @@ body {
 }
 
 .digit, .operator{ font-size: 32px;}
+
+#display p{
+    display: inline;
+}

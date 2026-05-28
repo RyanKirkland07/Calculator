@@ -14,10 +14,15 @@ function divide(num1, num2){
     return num1 / num2;
 }
 
-let num1;
-let num2;
+let display = document.querySelector("#display");
 
-let operator;
+let num1 = 0.0;
+let num2 = 0;
+let displayNum1 = document.querySelector("#display-num-1");
+let displayNum2 = document.querySelector("#display-num-2");
+
+let operator = "";
+let displayOperator = document.querySelector("#display-operator");
 
 function operate(leftNum, rightNum, operatorChar){
     if(typeof leftNum != 'number' || typeof rightNum != 'number'){
@@ -45,6 +50,21 @@ function operate(leftNum, rightNum, operatorChar){
             break;
     }
     console.log(out);
+}
+
+function updateNumber(event){
+    if(operator == ""){
+        num1 = num1 * 10;
+        num1 += parseInt(event.target.value);
+
+        displayNum1.textContent = num1;
+    }
+    else{
+        num2 = num2 * 10;
+        num2 += parseInt(event.target.value);
+
+        displayNum1.textContent = num2;
+    }
 }
 
 operate(3, 2, "+");

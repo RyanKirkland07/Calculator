@@ -12,6 +12,8 @@ body {
 #buttons {
     min-height: 90vh;
     min-width: 100vw;
+
+    font-size: 32px;
 }
 
 #digits {
@@ -31,3 +33,5 @@ body {
 .operator {
     min-height: 25%;
 }
+
+.digit, .operator{ font-size: 32px;}

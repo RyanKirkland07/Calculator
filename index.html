@@ -4,9 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
+
+    <link href="style.css" rel="stylesheet">
 </head>
-<body>
-    
+<body class="flex">
+    <div id="display">
+        000000
+    </div>
+    <div id="buttons" class="flex">
+        <div id="digits" class="flex">
+            <button id="0" class="digit" value="0"> 0 </button>
+            <button id="1" class="digit" value="1"> 1 </button>
+            <button id="2" class="digit" value="2"> 2 </button>
+            <button id="3" class="digit" value="3"> 3 </button>
+            <button id="4" class="digit" value="4"> 4 </button>
+            <button id="5" class="digit" value="5"> 5 </button>
+            <button id="6" class="digit" value="6"> 6 </button>
+            <button id="7" class="digit" value="7"> 7 </button>
+            <button id="8" class="digit" value="8"> 8 </button>
+            <button id="9" class="digit" value="9"> 9 </button>
+        </div>
+        <div id="operators" class="flex">
+            <button id="+" class="operator" value="+"> + </button>
+            <button id="-" class="operator" value="-"> - </button>
+            <button id="*" class="operator" value="*"> * </button>
+            <button id="/" class="operator" value="/"> / </button>
+        </div>
+    </div>
+
     <script src="calc.js"></script>
 </body>
 </html>

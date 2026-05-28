@@ -1,0 +1,33 @@
+.flex { display: flex; }
+
+body { 
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#display {
+    min-height: 10vh;
+    min-width: 100vw;
+}
+#buttons {
+    min-height: 90vh;
+    min-width: 100vw;
+}
+
+#digits {
+    flex-wrap: wrap;
+    min-width: 90vw;
+}
+
+#operators{
+    flex-direction: column;
+    min-height: 33%;
+    min-width: 10vw;
+}
+
+.digit {
+    min-width: 33%;
+}
+.operator {
+    min-height: 25%;
+}

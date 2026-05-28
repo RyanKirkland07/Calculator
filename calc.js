@@ -24,6 +24,8 @@ let displayNum2 = document.querySelector("#display-num-2");
 let operator = "";
 let displayOperator = document.querySelector("#display-operator");
 
+let ready = false;
+
 function operate(leftNum, rightNum, operatorChar){
     if(typeof leftNum != 'number' || typeof rightNum != 'number'){
         console.log("invalid numbers");
@@ -49,11 +51,11 @@ function operate(leftNum, rightNum, operatorChar){
             return;
             break;
     }
-    console.log(out);
+    return out;
 }
 
 function updateNumber(event){
-    if(operator == ""){
+    if(!ready){
         num1 = num1 * 10;
         num1 += parseInt(event.target.value);
 
@@ -63,7 +65,26 @@ function updateNumber(event){
         num2 = num2 * 10;
         num2 += parseInt(event.target.value);
 
-        displayNum1.textContent = num2;
+        displayNum2.textContent = num2;
+    }
+}
+
+function updateOperator(event){
+    if(!ready){
+        operator = event.target.value;
+        ready = true;
+
+        displayOperator.textContent = operator;
+    }
+    else{
+        num1 = operate(num1, num2, operator);
+        num2 = 0;
+
+        operator = event.target.value;
+
+        displayNum1.textContent = num1;
+        displayNum2.textContent = "";
+        displayOperator.textContent = operator;
     }
 }
 

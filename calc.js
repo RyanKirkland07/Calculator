@@ -1,30 +1,28 @@
-function add(num1, num2){
-    return num1 + num2;
+function add(leftNum, rightNum){
+    return leftNum + rightNum;
 }
 
-function subtract(num1, num2){
-    return num1 - num2;
+function subtract(leftNum, rightNum){
+    return leftNum - rightNum;
 }
 
-function multiply(num1, num2){
-    return num1 * num2;
+function multiply(leftNum, rightNum){
+    return leftNum * rightNum;
 }
 
-function divide(num1, num2){
-    return num1 / num2;
+function divide(leftNum, rightNum){
+    return leftNum / rightNum;
 }
 
-let display = document.querySelector("#display");
+let displayError = document.querySelector("#display-error");
 
-let num1 = 0.0;
+let num1 = 0;
 let num2 = 0;
 let displayNum1 = document.querySelector("#display-num-1");
 let displayNum2 = document.querySelector("#display-num-2");
 
 let operator = "";
 let displayOperator = document.querySelector("#display-operator");
-
-let ready = false;
 
 function operate(leftNum, rightNum, operatorChar){
     if(typeof leftNum != 'number' || typeof rightNum != 'number'){
@@ -55,7 +53,9 @@ function operate(leftNum, rightNum, operatorChar){
 }
 
 function updateNumber(event){
-    if(!ready){
+    displayError.textContent = "";
+
+    if(operator == ""){
         num1 = num1 * 10;
         num1 += parseInt(event.target.value);
 
@@ -70,13 +70,25 @@ function updateNumber(event){
 }
 
 function updateOperator(event){
-    if(!ready){
+    if(operator == ""){
         operator = event.target.value;
-        ready = true;
 
         displayOperator.textContent = operator;
     }
     else{
+        if(zeroDivision()){
+            num1 = 0;
+            num2 = 0;
+            operator = "";
+
+            displayError.textContent = "Can't divide by 0";
+
+            displayNum1.textContent = "";
+            displayNum2.textContent = "";
+            displayOperator.textContent = "";
+            return;
+        }
+
         num1 = operate(num1, num2, operator);
         num2 = 0;
 
@@ -88,9 +100,33 @@ function updateOperator(event){
     }
 }
 
-operate(3, 2, "+");
-operate(8, 5, "-");
-operate(2, 4, "*");
-operate(9, 3, "/");
-operate(10, 5, "a");
-operate("+", 10, 5);
+function equate(){
+    if(operator == ""){
+        return;
+    }
+    if(zeroDivision()){
+        num1 = 0;
+        num2 = 0;
+        operator = "";
+
+        displayError.textContent = "Can't divide by 0";
+
+        displayNum1.textContent = "";
+        displayNum2.textContent = "";
+        displayOperator.textContent = "";
+
+        return;
+    }
+
+    num1 = operate(num1, num2, operator);
+    num2 = 0;
+    operator = "";
+
+    displayNum1.textContent = num1;
+    displayNum2.textContent = "";
+    displayOperator.textContent = operator;
+}
+
+function zeroDivision(){
+    return num2 == 0 && operator == "/";
+}

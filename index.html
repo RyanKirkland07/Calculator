@@ -9,6 +9,7 @@
 </head>
 <body class="flex">
     <div id="display">
+        <p id="display-error"></p>
         <p id="display-num-1"></p>
         <p id="display-operator"></p>
         <p id="display-num-2"></p>
@@ -31,6 +32,7 @@
             <button id="-" class="operator" value="-" onclick="updateOperator(event)"> - </button>
             <button id="*" class="operator" value="*" onclick="updateOperator(event)"> * </button>
             <button id="/" class="operator" value="/" onclick="updateOperator(event)"> / </button>
+            <button id="=" class="operator" value="=" onclick="equate()"> = </button>
         </div>
     </div>
 

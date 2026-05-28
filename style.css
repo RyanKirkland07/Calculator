@@ -31,7 +31,7 @@ body {
     min-width: 33%;
 }
 .operator {
-    min-height: 25%;
+    min-height: 20%;
 }
 
 .digit, .operator{ font-size: 32px;}
